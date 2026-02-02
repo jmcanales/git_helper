@@ -4,11 +4,11 @@ comandos de git que siempre olvido y termino googleando
 
 ## 🌐 ver online
 
-https://tu-usuario.github.io/git-cheatsheet
+https://tu-usuario.github.io/git_helper
 
 ## 🚀 como subir esto a github pages
 
-1. crear repo en github con el nombre `git-cheatsheet`
+1. crear repo en github con el nombre `git_helper`
 
 2. subir el código:
 ```bash
@@ -16,7 +16,7 @@ git init
 git add .
 git commit -m "primer commit"
 git branch -M main
-git remote add origin https://github.com/tu-usuario/git-cheatsheet.git
+git remote add origin https://github.com/tu-usuario/git_helper.git
 git push -u origin main
 ```
 
@@ -48,4 +48,4 @@ basado en experiencias reales de googlear "git undo commit" por 47ma vez
 
 **nombre sugerido del repo:** git-cheatsheet
 
-**url final:** https://tu-usuario.github.io/git-cheatsheet
+**url final:** https://tu-usuario.github.io/git_helper
