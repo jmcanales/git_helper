@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comandos de git que siempre olvido</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            background: #ffffff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            margin-bottom: 60px;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1f2328;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: #57606a;
+            margin-top: 12px;
+        }
+
+        nav {
+            margin-top: 24px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #0969da;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background: #ddf4ff;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2328;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: #1f2328;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #24292f;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #f6f8fa;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #24292f;
+            border: 1px solid #d0d7de;
+        }
+
+        pre {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            border: none;
+            display: block;
+            line-height: 1.5;
+            color: #1f2328;
+        }
+
+        .note {
+            background: #ddf4ff;
+            border-left: 3px solid #0969da;
+            padding: 12px 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning {
+            background: #fff8c5;
+            border-left: 3px solid #d4a72c;
+            padding: 12px 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #d0d7de;
+            text-align: center;
+            color: #57606a;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #0969da;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>comandos de git que siempre olvido</h1>
+            <p class="intro">porque cada 2 días busco en google "como deshacer commit git"</p>
+            <nav>
+                <a href="#diario">uso diario</a>
+                <a href="#ramas">ramas</a>
+                <a href="#cagadas">cuando la cago</a>
+                <a href="#extras">extras</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="diario">
+                <h2>los que uso todos los días</h2>
+                
+                <p>básicamente lo que hago 50 veces al día sin pensar:</p>
+
+                <pre><code>git status
+git add .
+git commit -m "fix bug"
+git push</code></pre>
+
+                <p>cuando cambié varias cosas pero solo quiero commitear algunas:</p>
+
+                <pre><code>git add -p</code></pre>
+
+                <p>esto te pregunta archivo por archivo si quieres agregarlo. súper útil cuando tocaste 20 archivos pero solo quieres commitear 3.</p>
+
+                <h3>ver el historial</h3>
+
+                <p>la versión corta que realmente puedes leer:</p>
+
+                <pre><code>git log --oneline</code></pre>
+
+                <p>con las ramitas dibujadas (no sé como se llama técnicamente):</p>
+
+                <pre><code>git log --oneline --graph --all</code></pre>
+
+                <p>para ver qué cambió en cada commit:</p>
+
+                <pre><code>git log -p</code></pre>
+
+                <div class="note">
+                    <strong>tip:</strong> podes hacer un alias para no escribir tanto. tipo <code>git config --global alias.lg "log --oneline --graph"</code> y después solo escribís <code>git lg</code>
+                </div>
+            </section>
+
+            <section id="ramas">
+                <h2>todo lo de ramas</h2>
+
+                <p>crear una rama nueva y cambiarme a ella:</p>
+
+                <pre><code>git checkout -b nombre-rama</code></pre>
+
+                <p>o si usas la versión nueva de git:</p>
+
+                <pre><code>git switch -c nombre-rama</code></pre>
+
+                <p>ver todas las ramas (incluidas las del repo remoto):</p>
+
+                <pre><code>git branch -a</code></pre>
+
+                <p>borrar una rama local cuando ya no la necesito:</p>
+
+                <pre><code>git branch -d nombre-rama</code></pre>
+
+                <p>si git se pone denso y no te deja borrarla porque "hay cambios sin mergear" o algo así:</p>
+
+                <pre><code>git branch -D nombre-rama</code></pre>
+
+                <p>borrar una rama del repo remoto (tipo github):</p>
+
+                <pre><code>git push origin --delete nombre-rama</code></pre>
+
+                <h3>merge vs rebase</h3>
+
+                <p>merge es como juntar dos ramas y hace un commit extra de "merge". es seguro y no cambia el historial:</p>
+
+                <pre><code>git checkout main
+git merge mi-feature</code></pre>
+
+                <p>rebase es como agarrar tus commits y ponerlos arriba de la otra rama. hace que el historial quede más limpio pero puede ser quilombo si no sabés lo que estás haciendo:</p>
+
+                <pre><code>git checkout mi-feature
+git rebase main</code></pre>
+
+                <div class="warning">
+                    <strong>ojo:</strong> nunca hagas rebase de commits que ya pusheaste y otras personas descargaron. vas a romper todo y se van a enojar.
+                </div>
+            </section>
+
+            <section id="cagadas">
+                <h2>cuando la cago (seguido)</h2>
+
+                <h3>me arrepentí del último commit</h3>
+
+                <p>si querés deshacer el commit pero mantener los cambios:</p>
+
+                <pre><code>git reset --soft HEAD~1</code></pre>
+
+                <p>si querés tirar todo a la basura y volver como estaba antes:</p>
+
+                <pre><code>git reset --hard HEAD~1</code></pre>
+
+                <h3>cambié cosas y ahora quiero volver todo para atrás</h3>
+
+                <pre><code>git reset --hard HEAD</code></pre>
+
+                <p>ojo que esto borra TODO lo que cambiaste. no hay vuelta atrás después de esto.</p>
+
+                <h3>agregué un archivo al staging y quiero sacarlo</h3>
+
+                <pre><code>git restore --staged archivo.js</code></pre>
+
+                <h3>necesito guardar cambios pero no commitear todavía</h3>
+
+                <p>esto pasa cuando estás en el medio de algo y te piden que arregles otra cosa urgente:</p>
+
+                <pre><code>git stash</code></pre>
+
+                <p>después cuando terminés con lo urgente, recuperas tus cambios:</p>
+
+                <pre><code>git stash pop</code></pre>
+
+                <p>ver todos los stash que tenés guardados:</p>
+
+                <pre><code>git stash list</code></pre>
+
+                <h3>borré algo importante y necesito recuperarlo</h3>
+
+                <p>git guarda TODO. hasta lo que borraste. esto te salva la vida:</p>
+
+                <pre><code>git reflog</code></pre>
+
+                <p>ahí vas a ver toda la historia de lo que hiciste. buscas el commit que querés y:</p>
+
+                <pre><code>git reset --hard abc123</code></pre>
+
+                <p>(donde abc123 es el hash del commit)</p>
+
+                <div class="note">
+                    <strong>en serio:</strong> git reflog me salvó como 100 veces. cuando pensás que cagaste todo mal, reflog es tu amigo.
+                </div>
+
+                <h3>quiero un commit de otra rama</h3>
+
+                <p>cherry-pick es para eso. copias un commit específico a tu rama actual:</p>
+
+                <pre><code>git cherry-pick abc123</code></pre>
+            </section>
+
+            <section id="extras">
+                <h2>cosas extras que uso a veces</h2>
+
+                <h3>ver diferencias</h3>
+
+                <p>lo que cambié pero todavía no agregué:</p>
+
+                <pre><code>git diff</code></pre>
+
+                <p>lo que ya está en staging:</p>
+
+                <pre><code>git diff --staged</code></pre>
+
+                <p>diferencia entre dos commits:</p>
+
+                <pre><code>git diff abc123 def456</code></pre>
+
+                <h3>buscar algo en el código</h3>
+
+                <pre><code>git grep "función"</code></pre>
+
+                <p>esto busca en todos los archivos del proyecto. es re rápido.</p>
+
+                <h3>configuración inicial</h3>
+
+                <p>cuando configurás git por primera vez (o en una compu nueva):</p>
+
+                <pre><code>git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"</code></pre>
+
+                <p>para que git sea lindo con colores:</p>
+
+                <pre><code>git config --global color.ui auto</code></pre>
+
+                <h3>tags (para versiones)</h3>
+
+                <p>cuando sacas una versión nueva tipo v1.0:</p>
+
+                <pre><code>git tag v1.0.0
+git push origin v1.0.0</code></pre>
+
+                <h3>actualizar tu repo con lo del remoto</h3>
+
+                <pre><code>git pull</code></pre>
+
+                <p>si te da conflictos y no querés hacer merge, probá con:</p>
+
+                <pre><code>git pull --rebase</code></pre>
+
+                <h3>ver quién tocó cada línea de un archivo</h3>
+
+                <pre><code>git blame archivo.js</code></pre>
+
+                <p>esto muestra quién modificó cada línea y cuándo. útil cuando algo está roto y querés saber quién lo rompió jaja.</p>
+
+                <div class="note">
+                    <strong>dato:</strong> si trabajas con github o gitlab, configurá SSH keys. así no tenés que meter password cada vez que haces push.
+                </div>
+            </section>
+
+            <section>
+                <h2>recursos que me sirvieron</h2>
+
+                <ul>
+                    <li><a href="https://ohshitgit.com/">ohshitgit.com</a> - cuando hiciste algo mal y no sabés cómo arreglarlo</li>
+                    <li><a href="https://learngitbranching.js.org/">learngitbranching.js.org</a> - para aprender jugando</li>
+                    <li><a href="https://git-scm.com/book/es/v2">pro git book</a> - gratis y tiene todo</li>
+                </ul>
+
+                <p style="margin-top: 30px; color: #57606a; font-style: italic;">
+                    esto lo voy actualizando cuando aprendo algo nuevo o cuando me doy cuenta que venía haciendo algo mal desde siempre
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p>hecho por alguien que usa git todos los días y sigue googleando comandos básicos</p>
+            <p style="margin-top: 8px;">última actualización: febrero 2024</p>
+        </footer>
+    </div>
+</body>
+</html>
