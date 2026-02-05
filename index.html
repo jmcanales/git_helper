@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>comandos de git que siempre olvido</title>
+    <title>Guía Completa de Git - Control de Versiones</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2c5f2d;
+            --primary-light: #97bc62;
+            --secondary: #1a1a2e;
+            --accent: #e94560;
+            --bg: #fdfbf7;
+            --code-bg: #f4f1ea;
+            --border: #d4c5b9;
+            --text: #2a2a2a;
+            --text-muted: #666;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,100 +30,122 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #24292f;
-            background: #ffffff;
-            padding: 20px;
+            font-family: 'Crimson Pro', Georgia, serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            font-size: 19px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 24px;
         }
 
         header {
-            margin-bottom: 60px;
-            border-bottom: 2px solid #e1e4e8;
-            padding-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 0 50px;
+            margin-bottom: 50px;
+            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         h1 {
-            font-size: 36px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #1f2328;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
         }
 
-        .intro {
-            font-size: 18px;
-            color: #57606a;
-            margin-top: 12px;
+        .subtitle {
+            font-size: 22px;
+            opacity: 0.95;
+            font-weight: 400;
+            margin-bottom: 30px;
         }
 
         nav {
-            margin-top: 24px;
             display: flex;
-            gap: 20px;
+            gap: 12px;
             flex-wrap: wrap;
+            margin-top: 24px;
         }
 
         nav a {
-            color: #0969da;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
             text-decoration: none;
-            font-size: 15px;
-            padding: 6px 12px;
+            padding: 8px 18px;
             border-radius: 6px;
-            transition: background 0.2s;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
         }
 
         nav a:hover {
-            background: #ddf4ff;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         section {
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         h2 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1f2328;
-            border-bottom: 1px solid #d0d7de;
-            padding-bottom: 8px;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 12px;
+            margin-top: 50px;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
         }
 
         h3 {
-            font-size: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--secondary);
+        }
+
+        h4 {
+            font-size: 21px;
             font-weight: 600;
-            margin: 32px 0 16px;
-            color: #1f2328;
+            margin: 30px 0 16px;
+            color: var(--text);
         }
 
         p {
-            margin-bottom: 16px;
-            color: #24292f;
+            margin-bottom: 20px;
+            color: var(--text);
         }
 
         code {
-            font-family: 'JetBrains Mono', 'Courier New', monospace;
-            background: #f6f8fa;
-            padding: 3px 6px;
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--code-bg);
+            padding: 3px 8px;
             border-radius: 4px;
-            font-size: 14px;
-            color: #24292f;
-            border: 1px solid #d0d7de;
+            font-size: 16px;
+            color: var(--primary);
+            border: 1px solid var(--border);
         }
 
         pre {
-            background: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 16px;
+            background: var(--code-bg);
+            border: 2px solid var(--border);
+            border-left: 5px solid var(--primary);
+            border-radius: 8px;
+            padding: 20px;
             overflow-x: auto;
-            margin: 20px 0;
+            margin: 24px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         pre code {
@@ -116,303 +153,1312 @@
             padding: 0;
             border: none;
             display: block;
-            line-height: 1.5;
-            color: #1f2328;
+            line-height: 1.6;
+            color: var(--text);
+            font-size: 15px;
         }
 
         .note {
-            background: #ddf4ff;
-            border-left: 3px solid #0969da;
-            padding: 12px 16px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+            border-left: 5px solid var(--success);
+            padding: 20px 24px;
+            margin: 28px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .note strong {
+            color: var(--success);
+            font-size: 17px;
+            display: block;
+            margin-bottom: 8px;
         }
 
         .warning {
-            background: #fff8c5;
-            border-left: 3px solid #d4a72c;
-            padding: 12px 16px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #fff3cd 0%, #fff9e6 100%);
+            border-left: 5px solid var(--warning);
+            padding: 20px 24px;
+            margin: 28px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .warning strong {
+            color: var(--warning);
+            font-size: 17px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .danger {
+            background: linear-gradient(135deg, #ffe6e6 0%, #fff0f0 100%);
+            border-left: 5px solid var(--danger);
+            padding: 20px 24px;
+            margin: 28px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .danger strong {
+            color: var(--danger);
+            font-size: 17px;
+            display: block;
+            margin-bottom: 8px;
         }
 
         ul {
-            margin: 16px 0;
-            padding-left: 24px;
+            margin: 20px 0 20px 30px;
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        ol {
+            margin: 20px 0 20px 30px;
+        }
+
+        ol li {
+            margin-bottom: 16px;
+            padding-left: 8px;
+        }
+
+        .command-structure {
+            background: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .command-structure h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
         }
 
         footer {
             margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid #d0d7de;
+            padding: 40px 0;
+            border-top: 2px solid var(--border);
             text-align: center;
-            color: #57606a;
-            font-size: 14px;
+            color: var(--text-muted);
+            font-size: 16px;
+            background: #f9f7f4;
         }
 
         footer a {
-            color: #0969da;
+            color: var(--primary);
             text-decoration: none;
+            font-weight: 600;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
 
+        .example-box {
+            background: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .example-box h5 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                font-size: 17px;
             }
-            
+
             .container {
-                padding: 20px 10px;
+                padding: 0 16px;
             }
 
             h1 {
-                font-size: 28px;
+                font-size: 36px;
             }
 
             h2 {
-                font-size: 24px;
+                font-size: 28px;
             }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            header {
+                padding: 40px 0 35px;
+            }
+
+            pre {
+                padding: 16px;
+            }
+
+            pre code {
+                font-size: 14px;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(151, 188, 98, 0.3) 0%, rgba(151, 188, 98, 0.1) 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>comandos de git que siempre olvido</h1>
-            <p class="intro">porque cada 2 días busco en google "como deshacer commit git"</p>
+    <header>
+        <div class="container">
+            <h1>Control de Versiones con Git</h1>
+            <p class="subtitle">Una guía completa para dominar Git desde los fundamentos hasta técnicas avanzadas</p>
             <nav>
-                <a href="#diario">uso diario</a>
-                <a href="#ramas">ramas</a>
-                <a href="#cagadas">cuando la cago</a>
-                <a href="#extras">extras</a>
+                <a href="#introduccion">Introducción</a>
+                <a href="#conceptos">Conceptos clave</a>
+                <a href="#configuracion">Configuración</a>
+                <a href="#basico">Uso básico</a>
+                <a href="#ramas">Ramas</a>
+                <a href="#remotos">Repositorios remotos</a>
+                <a href="#avanzado">Técnicas avanzadas</a>
+                <a href="#problemas">Solución de problemas</a>
             </nav>
-        </header>
+        </div>
+    </header>
 
+    <div class="container">
         <main>
-            <section id="diario">
-                <h2>los que uso todos los días</h2>
+            <section id="introduccion">
+                <h2>1. Introducción a Git</h2>
                 
-                <p>básicamente lo que hago 50 veces al día sin pensar:</p>
+                <p><strong>Objetivo de la sección:</strong> Comprender qué es Git, por qué es fundamental en el desarrollo de software moderno, y cómo nos ayuda a manejar cambios en nuestros proyectos.</p>
 
-                <pre><code>git status
-git add .
-git commit -m "fix bug"
-git push</code></pre>
+                <h3>1.1. ¿Qué es Git?</h3>
+                
+                <p>Git es un <span class="highlight">sistema de control de versiones distribuido</span> creado por Linus Torvalds en 2005. A diferencia de otros sistemas como SVN o CVS que mantienen una única copia central del código, Git permite que cada desarrollador tenga una copia completa del historial del proyecto en su máquina local.</p>
 
-                <p>cuando cambié varias cosas pero solo quiero commitear algunas:</p>
+                <p>Imagina que estás escribiendo un trabajo importante. Sin Git, probablemente tendrías archivos con nombres como:</p>
 
-                <pre><code>git add -p</code></pre>
+                <pre><code>TesisFinal.docx
+TesisFinal_v2.docx
+TesisFinal_v2_AHORA_SI.docx
+TesisFinal_v2_AHORA_SI_DEFINITIVO.docx</code></pre>
 
-                <p>esto te pregunta archivo por archivo si quieres agregarlo. súper útil cuando tocaste 20 archivos pero solo quieres commitear 3.</p>
+                <p>Este enfoque se vuelve inmanejable rápidamente. Git resuelve este problema permitiéndote guardar "instantáneas" (snapshots) de tu proyecto en diferentes momentos, con la posibilidad de volver a cualquiera de ellas cuando lo necesites.</p>
 
-                <h3>ver el historial</h3>
+                <h3>1.2. ¿Por qué usar Git?</h3>
 
-                <p>la versión corta que realmente puedes leer:</p>
+                <p>Las razones principales para usar Git incluyen:</p>
 
-                <pre><code>git log --oneline</code></pre>
+                <ul>
+                    <li><strong>Historial completo:</strong> Puedes ver quién hizo qué cambios, cuándo y por qué.</li>
+                    <li><strong>Trabajo en paralelo:</strong> Varios desarrolladores pueden trabajar simultáneamente sin interferir entre sí.</li>
+                    <li><strong>Experimentación segura:</strong> Puedes probar nuevas ideas sin miedo a romper el código que funciona.</li>
+                    <li><strong>Recuperación:</strong> Si algo sale mal, puedes volver a una versión anterior que funcionaba.</li>
+                    <li><strong>Colaboración:</strong> Facilita trabajar en equipo y revisar el código de otros.</li>
+                </ul>
 
-                <p>con las ramitas dibujadas (no sé como se llama técnicamente):</p>
+                <div class="note">
+                    <strong>Nota importante:</strong> Git y GitHub no son lo mismo. Git es el sistema de control de versiones (el software que instalas en tu computadora), mientras que GitHub es una plataforma en la nube que usa Git y ofrece servicios adicionales como hosting de repositorios, issues, pull requests, etc. Existen alternativas a GitHub como GitLab, Bitbucket y otros.
+                </div>
+            </section>
 
-                <pre><code>git log --oneline --graph --all</code></pre>
+            <section id="conceptos">
+                <h2>2. Conceptos fundamentales</h2>
 
-                <p>para ver qué cambió en cada commit:</p>
+                <p>Antes de empezar a usar Git, es crucial entender algunos conceptos clave que aparecerán constantemente.</p>
+
+                <h3>2.1. Repositorio (Repository)</h3>
+
+                <p>Un <strong>repositorio</strong> es básicamente una carpeta de proyecto que Git está monitoreando. Contiene todos los archivos de tu proyecto más una carpeta oculta llamada <code>.git</code> donde Git guarda toda la información del historial.</p>
+
+                <p>Existen dos tipos de repositorios:</p>
+                <ul>
+                    <li><strong>Repositorio local:</strong> El que tienes en tu computadora.</li>
+                    <li><strong>Repositorio remoto:</strong> Una copia del repositorio alojada en un servidor (como GitHub, GitLab, etc.).</li>
+                </ul>
+
+                <h3>2.2. Commit</h3>
+
+                <p>Un <strong>commit</strong> es como una fotografía de tu proyecto en un momento específico. Cada commit tiene:</p>
+                <ul>
+                    <li>Un identificador único (hash SHA-1)</li>
+                    <li>Un mensaje descriptivo de los cambios</li>
+                    <li>Información sobre quién hizo los cambios y cuándo</li>
+                    <li>Una referencia al commit anterior (su "padre")</li>
+                </ul>
+
+                <div class="example-box">
+                    <h5>Analogía útil:</h5>
+                    <p>Piensa en los commits como puntos de guardado en un videojuego. Si algo sale mal más adelante, puedes "cargar" ese punto de guardado y continuar desde ahí.</p>
+                </div>
+
+                <h3>2.3. Staging Area (Área de preparación)</h3>
+
+                <p>El <strong>staging area</strong> es un espacio intermedio donde preparas los cambios antes de hacer un commit. No todos los archivos que modificaste tienen que ir en el mismo commit; puedes elegir específicamente qué cambios incluir.</p>
+
+                <p>Los archivos en tu proyecto pueden estar en uno de tres estados:</p>
+
+                <table>
+                    <tr>
+                        <th>Estado</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Modified</strong> (Modificado)</td>
+                        <td>Has cambiado el archivo pero aún no lo has marcado para incluir en el próximo commit.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Staged</strong> (En staging)</td>
+                        <td>Has marcado el archivo modificado para incluirlo en el próximo commit.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Committed</strong> (Confirmado)</td>
+                        <td>Los cambios están guardados de forma segura en el repositorio local.</td>
+                    </tr>
+                </table>
+
+                <h3>2.4. Branch (Rama)</h3>
+
+                <p>Una <strong>rama</strong> es una línea independiente de desarrollo. La rama principal se llama tradicionalmente <code>main</code> o <code>master</code>. Cuando creas una nueva rama, básicamente estás creando una copia donde puedes experimentar sin afectar el código principal.</p>
+
+                <p>Las ramas son extremadamente útiles para:</p>
+                <ul>
+                    <li>Desarrollar nuevas características sin afectar el código que está en producción</li>
+                    <li>Trabajar en múltiples características simultáneamente</li>
+                    <li>Aislar correcciones de bugs urgentes</li>
+                </ul>
+
+                <h3>2.5. Merge</h3>
+
+                <p>El <strong>merge</strong> es el proceso de combinar los cambios de una rama con otra. Por ejemplo, cuando terminas de desarrollar una nueva característica en una rama separada, haces merge de esa rama hacia la rama principal para incorporar los cambios.</p>
+
+                <h3>2.6. Clone, Pull y Push</h3>
+
+                <ul>
+                    <li><strong>Clone:</strong> Crear una copia local de un repositorio remoto.</li>
+                    <li><strong>Pull:</strong> Descargar cambios del repositorio remoto y combinarlos con tu repositorio local.</li>
+                    <li><strong>Push:</strong> Enviar tus commits locales al repositorio remoto.</li>
+                </ul>
+            </section>
+
+            <section id="configuracion">
+                <h2>3. Configuración inicial</h2>
+
+                <p>Antes de empezar a usar Git, necesitas configurarlo con tu información personal. Esta información se incluirá en cada commit que hagas.</p>
+
+                <h3>3.1. Configuración de identidad</h3>
+
+                <p>Los dos comandos más importantes son establecer tu nombre y email:</p>
+
+                <pre><code>git config --global user.name "Tu Nombre Completo"
+git config --global user.email "tu.email@ejemplo.com"</code></pre>
+
+                <p>El flag <code>--global</code> significa que esta configuración se aplicará a todos tus proyectos Git en esta computadora. Si quisieras usar información diferente para un proyecto específico, puedes ejecutar los mismos comandos sin <code>--global</code> dentro de ese proyecto.</p>
+
+                <h3>3.2. Editor predeterminado</h3>
+
+                <p>Git a veces necesita que escribas mensajes más largos (por ejemplo, al resolver conflictos). Puedes configurar tu editor preferido:</p>
+
+                <pre><code>git config --global core.editor "code --wait"  # Para Visual Studio Code
+git config --global core.editor "nano"         # Para Nano
+git config --global core.editor "vim"          # Para Vim</code></pre>
+
+                <h3>3.3. Colores en la terminal</h3>
+
+                <p>Para que Git muestre colores en la salida de comandos (hace todo más legible):</p>
+
+                <pre><code>git config --global color.ui auto</code></pre>
+
+                <h3>3.4. Ver tu configuración</h3>
+
+                <p>Para ver toda tu configuración actual:</p>
+
+                <pre><code>git config --list</code></pre>
+
+                <p>Para ver una configuración específica:</p>
+
+                <pre><code>git config user.name
+git config user.email</code></pre>
+
+                <div class="note">
+                    <strong>Consejo:</strong> Todas estas configuraciones se guardan en un archivo de texto plano. Si usaste <code>--global</code>, el archivo está en <code>~/.gitconfig</code> (Linux/Mac) o <code>C:\Users\TuUsuario\.gitconfig</code> (Windows). Puedes editarlo directamente si lo prefieres.
+                </div>
+            </section>
+
+            <section id="basico">
+                <h2>4. Uso básico de Git</h2>
+
+                <p>Ahora que entendemos los conceptos y tenemos Git configurado, veamos los comandos que usarás día a día.</p>
+
+                <h3>4.1. Crear un repositorio nuevo</h3>
+
+                <p>Para empezar a usar Git en un proyecto existente, navega a la carpeta del proyecto y ejecuta:</p>
+
+                <pre><code>cd mi-proyecto
+git init</code></pre>
+
+                <p>Esto crea la carpeta oculta <code>.git</code> que contiene toda la información del repositorio. Después de esto, puedes empezar a hacer commits.</p>
+
+                <h3>4.2. Ver el estado del repositorio</h3>
+
+                <p>El comando más usado en Git es probablemente:</p>
+
+                <pre><code>git status</code></pre>
+
+                <p>Este comando te muestra:</p>
+                <ul>
+                    <li>En qué rama estás</li>
+                    <li>Qué archivos has modificado</li>
+                    <li>Qué archivos están en staging</li>
+                    <li>Qué archivos no están siendo rastreados por Git</li>
+                </ul>
+
+                <div class="warning">
+                    <strong>Recomendación:</strong> Ejecuta <code>git status</code> constantemente. Es imposible usar este comando "demasiado". Te ayuda a entender exactamente en qué estado está tu repositorio antes de ejecutar cualquier otro comando.
+                </div>
+
+                <h3>4.3. Agregar archivos al staging area</h3>
+
+                <p>Para agregar archivos específicos al staging area:</p>
+
+                <pre><code>git add archivo.txt
+git add carpeta/otro-archivo.js</code></pre>
+
+                <p>Para agregar todos los archivos modificados:</p>
+
+                <pre><code>git add .</code></pre>
+
+                <p>Para agregar todos los archivos con una extensión específica:</p>
+
+                <pre><code>git add *.js</code></pre>
+
+                <h4>4.3.1. Agregar cambios selectivamente con -p</h4>
+
+                <p>Una herramienta muy poderosa es el flag <code>-p</code> (patch mode), que te permite revisar cada cambio y decidir si incluirlo:</p>
+
+                <pre><code>git add -p archivo.js</code></pre>
+
+                <p>Git te mostrará cada "hunk" (fragmento de cambios) y te preguntará qué hacer:</p>
+                <ul>
+                    <li><code>y</code> - agregar este hunk al staging</li>
+                    <li><code>n</code> - no agregar este hunk</li>
+                    <li><code>s</code> - dividir el hunk en partes más pequeñas</li>
+                    <li><code>q</code> - salir</li>
+                    <li><code>?</code> - ayuda con más opciones</li>
+                </ul>
+
+                <div class="example-box">
+                    <h5>Caso de uso práctico:</h5>
+                    <p>Imagina que estabas trabajando en una nueva característica y, de paso, arreglaste un bug no relacionado. Puedes usar <code>git add -p</code> para crear dos commits separados: uno para la característica y otro para el bug fix. Esto hace que el historial sea mucho más claro.</p>
+                </div>
+
+                <h3>4.4. Hacer un commit</h3>
+
+                <p>Una vez que tienes archivos en el staging area, puedes hacer un commit:</p>
+
+                <pre><code>git commit -m "Mensaje descriptivo del commit"</code></pre>
+
+                <p>Si omites el <code>-m</code>, Git abrirá tu editor configurado para que escribas un mensaje más detallado:</p>
+
+                <pre><code>git commit</code></pre>
+
+                <h4>4.4.1. Anatomía de un buen mensaje de commit</h4>
+
+                <p>Un mensaje de commit bien escrito tiene:</p>
+
+                <ol>
+                    <li><strong>Primera línea:</strong> Resumen breve (máximo 50 caracteres) en modo imperativo: "Agrega", "Corrige", "Actualiza" (no "Agregado" o "Agregando").</li>
+                    <li><strong>Línea en blanco</strong></li>
+                    <li><strong>Descripción detallada:</strong> Explica el QUÉ y el POR QUÉ, no el CÓMO (el código ya muestra el cómo).</li>
+                </ol>
+
+                <div class="example-box">
+                    <h5>Ejemplo de buen commit:</h5>
+                    <pre><code>Corrige error de división por cero en cálculo de promedio
+
+El método calcularPromedio() no validaba que la lista de notas
+estuviera vacía, causando una excepción. Ahora retorna 0 si la
+lista está vacía y escribe un warning en el log.</code></pre>
+                </div>
+
+                <h4>4.4.2. Atajos útiles</h4>
+
+                <p>Para hacer commit de todos los archivos modificados (saltándote el <code>git add</code>):</p>
+
+                <pre><code>git commit -am "Mensaje"</code></pre>
+
+                <div class="danger">
+                    <strong>Advertencia:</strong> El flag <code>-a</code> solo funciona con archivos que Git ya está rastreando. No agregará archivos nuevos. Además, úsalo con cuidado porque podrías incluir cambios que no querías commitear.
+                </div>
+
+                <h3>4.5. Ver el historial de commits</h3>
+
+                <p>Para ver la lista de commits:</p>
+
+                <pre><code>git log</code></pre>
+
+                <p>Esto muestra mucha información. Aquí algunas variantes más útiles:</p>
+
+                <pre><code>git log --oneline                    # Una línea por commit
+git log --oneline --graph            # Con un gráfico de ramas
+git log --oneline --graph --all      # Incluyendo todas las ramas
+git log -5                           # Solo los últimos 5 commits
+git log --author="Juan"              # Commits de un autor específico
+git log --since="2 weeks ago"        # Commits de las últimas 2 semanas
+git log --grep="bug"                 # Commits cuyo mensaje contiene "bug"</code></pre>
+
+                <h4>4.5.1. Ver cambios en commits</h4>
+
+                <p>Para ver qué cambió en cada commit:</p>
 
                 <pre><code>git log -p</code></pre>
 
+                <p>Para ver estadísticas de cambios:</p>
+
+                <pre><code>git log --stat</code></pre>
+
+                <h3>4.6. Ver diferencias</h3>
+
+                <p>Para ver qué has cambiado pero aún no has agregado al staging:</p>
+
+                <pre><code>git diff</code></pre>
+
+                <p>Para ver qué hay en staging (listo para commit):</p>
+
+                <pre><code>git diff --staged</code></pre>
+
+                <p>Para comparar dos commits específicos:</p>
+
+                <pre><code>git diff commit1 commit2</code></pre>
+
+                <p>Para ver diferencias en un archivo específico:</p>
+
+                <pre><code>git diff archivo.txt</code></pre>
+
+                <h3>4.7. Ignorar archivos: .gitignore</h3>
+
+                <p>Hay archivos que no quieres que Git rastree: dependencias, archivos compilados, configuraciones locales, etc. Para esto existe el archivo <code>.gitignore</code>.</p>
+
+                <p>Crea un archivo llamado <code>.gitignore</code> en la raíz de tu proyecto:</p>
+
+                <pre><code># Ignorar archivos de Node.js
+node_modules/
+
+# Ignorar archivos de Python
+__pycache__/
+*.pyc
+.env
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de compilación
+*.class
+*.o
+build/
+dist/
+
+# Ignorar configuraciones del IDE
+.vscode/
+.idea/
+*.swp</code></pre>
+
                 <div class="note">
-                    <strong>tip:</strong> podes hacer un alias para no escribir tanto. tipo <code>git config --global alias.lg "log --oneline --graph"</code> y después solo escribís <code>git lg</code>
+                    <strong>Tip pro:</strong> GitHub mantiene una colección de plantillas de <code>.gitignore</code> para diferentes lenguajes y frameworks en <a href="https://github.com/github/gitignore" target="_blank">github.com/github/gitignore</a>. Puedes usar estas como punto de partida.
                 </div>
             </section>
 
             <section id="ramas">
-                <h2>todo lo de ramas</h2>
+                <h2>5. Trabajando con ramas</h2>
 
-                <p>crear una rama nueva y cambiarme a ella:</p>
+                <p>Las ramas son una de las características más poderosas de Git. Permiten desarrollo paralelo sin interferencias.</p>
 
-                <pre><code>git checkout -b nombre-rama</code></pre>
+                <h3>5.1. Crear y cambiar de rama</h3>
 
-                <p>o si usas la versión nueva de git:</p>
+                <p>Para crear una nueva rama:</p>
 
-                <pre><code>git switch -c nombre-rama</code></pre>
+                <pre><code>git branch nombre-de-rama</code></pre>
 
-                <p>ver todas las ramas (incluidas las del repo remoto):</p>
+                <p>Para cambiar a esa rama:</p>
+
+                <pre><code>git checkout nombre-de-rama</code></pre>
+
+                <p>O hacer ambas cosas en un solo comando:</p>
+
+                <pre><code>git checkout -b nombre-de-rama</code></pre>
+
+                <p>En versiones más recientes de Git (2.23+), hay comandos más intuitivos:</p>
+
+                <pre><code>git switch nombre-de-rama           # Cambiar de rama
+git switch -c nombre-de-rama       # Crear y cambiar</code></pre>
+
+                <h3>5.2. Ver ramas</h3>
+
+                <p>Para ver todas las ramas locales:</p>
+
+                <pre><code>git branch</code></pre>
+
+                <p>La rama actual aparece marcada con un asterisco (*). Para ver también las ramas remotas:</p>
 
                 <pre><code>git branch -a</code></pre>
 
-                <p>borrar una rama local cuando ya no la necesito:</p>
+                <p>Para ver las ramas con su último commit:</p>
+
+                <pre><code>git branch -v</code></pre>
+
+                <h3>5.3. Fusionar ramas (merge)</h3>
+
+                <p>Imagina que creaste una rama llamada <code>nueva-caracteristica</code>, trabajaste en ella, y ahora quieres incorporar esos cambios a <code>main</code>. El proceso es:</p>
+
+                <ol>
+                    <li>Cambiar a la rama que recibirá los cambios (main)</li>
+                    <li>Hacer merge de la otra rama</li>
+                </ol>
+
+                <pre><code>git checkout main
+git merge nueva-caracteristica</code></pre>
+
+                <p>Git intentará fusionar automáticamente los cambios. Si no hay conflictos, creará un "merge commit" que une las dos líneas de desarrollo.</p>
+
+                <h4>5.3.1. Tipos de merge</h4>
+
+                <p>Existen principalmente dos tipos de merge:</p>
+
+                <div class="command-structure">
+                    <h4>Fast-forward merge</h4>
+                    <p>Ocurre cuando no hubo cambios en la rama principal después de crear la rama secundaria. Git simplemente "mueve el puntero" de main hacia adelante.</p>
+                    <pre><code>git merge nueva-caracteristica</code></pre>
+                </div>
+
+                <div class="command-structure">
+                    <h4>Three-way merge</h4>
+                    <p>Ocurre cuando ambas ramas tienen commits nuevos. Git crea un nuevo commit que tiene dos padres, combinando ambas líneas de desarrollo.</p>
+                    <pre><code>git merge --no-ff nueva-caracteristica</code></pre>
+                    <p>El flag <code>--no-ff</code> fuerza un merge commit incluso si es posible hacer fast-forward. Útil para mantener el historial más claro.</p>
+                </div>
+
+                <h3>5.4. Resolver conflictos</h3>
+
+                <p>Un <strong>conflicto</strong> ocurre cuando Git no puede fusionar automáticamente porque las mismas líneas fueron modificadas de forma diferente en ambas ramas.</p>
+
+                <p>Cuando hay un conflicto, Git marca el archivo afectado así:</p>
+
+                <pre><code>function calcular() {
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    return x + y;
+=======
+    return x * y;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; nueva-caracteristica
+}</code></pre>
+
+                <p>Las partes del código son:</p>
+                <ul>
+                    <li>Entre <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> y <code>=======</code>: lo que está en tu rama actual</li>
+                    <li>Entre <code>=======</code> y <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; nueva-caracteristica</code>: lo que viene de la otra rama</li>
+                </ul>
+
+                <h4>5.4.1. Pasos para resolver un conflicto</h4>
+
+                <ol>
+                    <li>Abre el archivo y decide qué código mantener</li>
+                    <li>Elimina las marcas de conflicto (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>)</li>
+                    <li>Haz <code>git add</code> del archivo resuelto</li>
+                    <li>Completa el merge con <code>git commit</code></li>
+                </ol>
+
+                <p>Ejemplo de resolución:</p>
+
+                <pre><code>function calcular() {
+    // Decidimos usar la multiplicación
+    return x * y;
+}</code></pre>
+
+                <pre><code>git add archivo.js
+git commit -m "Resuelve conflicto en función calcular"</code></pre>
+
+                <div class="warning">
+                    <strong>Si te arrepientes:</strong> Si estás en medio de un merge y quieres cancelarlo todo, puedes ejecutar <code>git merge --abort</code> para volver al estado anterior.
+                </div>
+
+                <h3>5.5. Rebase: una alternativa al merge</h3>
+
+                <p><strong>Rebase</strong> es otra forma de integrar cambios entre ramas. En lugar de crear un merge commit, rebase "reescribe" el historial moviendo tus commits para que aparezcan después de los commits de la otra rama.</p>
+
+                <pre><code>git checkout mi-rama
+git rebase main</code></pre>
+
+                <p>La diferencia fundamental:</p>
+                <ul>
+                    <li><strong>Merge:</strong> Preserva el historial completo, incluyendo cuándo se crearon las ramas y cuándo se fusionaron.</li>
+                    <li><strong>Rebase:</strong> Crea un historial lineal más limpio, pero "reescribe" la historia.</li>
+                </ul>
+
+                <div class="danger">
+                    <strong>Regla de oro del rebase:</strong> NUNCA hagas rebase de commits que ya hayas pusheado y que otras personas puedan haber descargado. Solo usa rebase en commits que todavía están solo en tu máquina. Reescribir historial compartido causa muchos problemas a tus compañeros de equipo.
+                </div>
+
+                <h4>5.5.1. Cuándo usar merge vs rebase</h4>
+
+                <table>
+                    <tr>
+                        <th>Usa merge cuando...</th>
+                        <th>Usa rebase cuando...</th>
+                    </tr>
+                    <tr>
+                        <td>Quieres preservar el historial completo y contexto</td>
+                        <td>Quieres un historial limpio y lineal</td>
+                    </tr>
+                    <tr>
+                        <td>Estás integrando una rama compartida</td>
+                        <td>Estás actualizando tu rama local antes de pushear</td>
+                    </tr>
+                    <tr>
+                        <td>Quieres que sea obvio cuándo se fusionaron cambios</td>
+                        <td>No importa cuando se hicieron los cambios originalmente</td>
+                    </tr>
+                </table>
+
+                <h3>5.6. Eliminar ramas</h3>
+
+                <p>Cuando ya no necesitas una rama (por ejemplo, después de hacer merge), puedes eliminarla:</p>
 
                 <pre><code>git branch -d nombre-rama</code></pre>
 
-                <p>si git se pone denso y no te deja borrarla porque "hay cambios sin mergear" o algo así:</p>
+                <p>Git te advertirá si la rama tiene cambios que no han sido fusionados. Si estás seguro de que quieres eliminarla de todas formas:</p>
 
                 <pre><code>git branch -D nombre-rama</code></pre>
 
-                <p>borrar una rama del repo remoto (tipo github):</p>
+                <p>Para eliminar una rama remota:</p>
 
                 <pre><code>git push origin --delete nombre-rama</code></pre>
-
-                <h3>merge vs rebase</h3>
-
-                <p>merge es como juntar dos ramas y hace un commit extra de "merge". es seguro y no cambia el historial:</p>
-
-                <pre><code>git checkout main
-git merge mi-feature</code></pre>
-
-                <p>rebase es como agarrar tus commits y ponerlos arriba de la otra rama. hace que el historial quede más limpio pero puede ser quilombo si no sabés lo que estás haciendo:</p>
-
-                <pre><code>git checkout mi-feature
-git rebase main</code></pre>
-
-                <div class="warning">
-                    <strong>ojo:</strong> nunca hagas rebase de commits que ya pusheaste y otras personas descargaron. vas a romper todo y se van a enojar.
-                </div>
             </section>
 
-            <section id="cagadas">
-                <h2>cuando la cago (seguido)</h2>
+            <section id="remotos">
+                <h2>6. Trabajando con repositorios remotos</h2>
 
-                <h3>me arrepentí del último commit</h3>
+                <p>Hasta ahora todo ha sido local. Veamos cómo sincronizar tu trabajo con un servidor remoto como GitHub.</p>
 
-                <p>si querés deshacer el commit pero mantener los cambios:</p>
+                <h3>6.1. Clonar un repositorio</h3>
 
-                <pre><code>git reset --soft HEAD~1</code></pre>
+                <p>Para descargar un repositorio completo desde un servidor remoto:</p>
 
-                <p>si querés tirar todo a la basura y volver como estaba antes:</p>
+                <pre><code>git clone https://github.com/usuario/repositorio.git</code></pre>
 
-                <pre><code>git reset --hard HEAD~1</code></pre>
+                <p>Esto crea una carpeta con el nombre del repositorio, descarga todo el historial, y automáticamente configura el remoto llamado <code>origin</code>.</p>
 
-                <h3>cambié cosas y ahora quiero volver todo para atrás</h3>
+                <p>Si quieres que la carpeta tenga un nombre diferente:</p>
 
-                <pre><code>git reset --hard HEAD</code></pre>
+                <pre><code>git clone https://github.com/usuario/repositorio.git mi-carpeta</code></pre>
 
-                <p>ojo que esto borra TODO lo que cambiaste. no hay vuelta atrás después de esto.</p>
+                <h3>6.2. Ver repositorios remotos</h3>
 
-                <h3>agregué un archivo al staging y quiero sacarlo</h3>
+                <p>Para ver qué remotos tienes configurados:</p>
 
-                <pre><code>git restore --staged archivo.js</code></pre>
+                <pre><code>git remote -v</code></pre>
 
-                <h3>necesito guardar cambios pero no commitear todavía</h3>
+                <p>Esto muestra el nombre del remoto y su URL (tanto para fetch como para push).</p>
 
-                <p>esto pasa cuando estás en el medio de algo y te piden que arregles otra cosa urgente:</p>
+                <h3>6.3. Agregar un repositorio remoto</h3>
 
-                <pre><code>git stash</code></pre>
+                <p>Si creaste un repositorio local y ahora quieres conectarlo a GitHub:</p>
 
-                <p>después cuando terminés con lo urgente, recuperas tus cambios:</p>
+                <ol>
+                    <li>Crea el repositorio en GitHub (vacío, sin README)</li>
+                    <li>Agrega el remoto a tu repositorio local:</li>
+                </ol>
 
-                <pre><code>git stash pop</code></pre>
+                <pre><code>git remote add origin https://github.com/usuario/repositorio.git</code></pre>
 
-                <p>ver todos los stash que tenés guardados:</p>
+                <p>Aquí <code>origin</code> es solo un nombre (el convencional para el remoto principal). Podrías usar otro nombre si quisieras.</p>
 
-                <pre><code>git stash list</code></pre>
+                <h3>6.4. Enviar cambios (push)</h3>
 
-                <h3>borré algo importante y necesito recuperarlo</h3>
+                <p>Para enviar tus commits locales al repositorio remoto:</p>
 
-                <p>git guarda TODO. hasta lo que borraste. esto te salva la vida:</p>
+                <pre><code>git push origin main</code></pre>
 
-                <pre><code>git reflog</code></pre>
+                <p>Esto envía los commits de la rama <code>main</code> al remoto <code>origin</code>.</p>
 
-                <p>ahí vas a ver toda la historia de lo que hiciste. buscas el commit que querés y:</p>
+                <p>La primera vez que pusheas una rama nueva, Git te pedirá que establezcas el "upstream" (la rama remota que corresponde a tu rama local):</p>
 
-                <pre><code>git reset --hard abc123</code></pre>
+                <pre><code>git push -u origin nueva-rama</code></pre>
 
-                <p>(donde abc123 es el hash del commit)</p>
+                <p>El flag <code>-u</code> (o <code>--set-upstream</code>) hace que Git recuerde esta relación, así que en el futuro solo necesitarás escribir:</p>
 
-                <div class="note">
-                    <strong>en serio:</strong> git reflog me salvó como 100 veces. cuando pensás que cagaste todo mal, reflog es tu amigo.
-                </div>
+                <pre><code>git push</code></pre>
 
-                <h3>quiero un commit de otra rama</h3>
+                <h3>6.5. Descargar cambios (fetch y pull)</h3>
 
-                <p>cherry-pick es para eso. copias un commit específico a tu rama actual:</p>
+                <p>Hay dos formas de traer cambios del repositorio remoto:</p>
 
-                <pre><code>git cherry-pick abc123</code></pre>
-            </section>
+                <h4>6.5.1. git fetch</h4>
 
-            <section id="extras">
-                <h2>cosas extras que uso a veces</h2>
+                <p><code>git fetch</code> descarga los cambios pero NO los fusiona con tu trabajo actual:</p>
 
-                <h3>ver diferencias</h3>
+                <pre><code>git fetch origin</code></pre>
 
-                <p>lo que cambié pero todavía no agregué:</p>
+                <p>Esto actualiza tus "ramas remotas" (como <code>origin/main</code>) pero tu rama local (<code>main</code>) queda intacta. Puedes revisar los cambios y decidir si fusionarlos:</p>
 
-                <pre><code>git diff</code></pre>
+                <pre><code>git fetch origin
+git diff origin/main      # Ver qué cambió
+git merge origin/main     # Fusionar si todo está bien</code></pre>
 
-                <p>lo que ya está en staging:</p>
+                <h4>6.5.2. git pull</h4>
 
-                <pre><code>git diff --staged</code></pre>
+                <p><code>git pull</code> es básicamente <code>fetch</code> + <code>merge</code> en un solo comando:</p>
 
-                <p>diferencia entre dos commits:</p>
+                <pre><code>git pull origin main</code></pre>
 
-                <pre><code>git diff abc123 def456</code></pre>
-
-                <h3>buscar algo en el código</h3>
-
-                <pre><code>git grep "función"</code></pre>
-
-                <p>esto busca en todos los archivos del proyecto. es re rápido.</p>
-
-                <h3>configuración inicial</h3>
-
-                <p>cuando configurás git por primera vez (o en una compu nueva):</p>
-
-                <pre><code>git config --global user.name "Tu Nombre"
-git config --global user.email "tu@email.com"</code></pre>
-
-                <p>para que git sea lindo con colores:</p>
-
-                <pre><code>git config --global color.ui auto</code></pre>
-
-                <h3>tags (para versiones)</h3>
-
-                <p>cuando sacas una versión nueva tipo v1.0:</p>
-
-                <pre><code>git tag v1.0.0
-git push origin v1.0.0</code></pre>
-
-                <h3>actualizar tu repo con lo del remoto</h3>
+                <p>Si configuraste el upstream, simplemente:</p>
 
                 <pre><code>git pull</code></pre>
 
-                <p>si te da conflictos y no querés hacer merge, probá con:</p>
+                <div class="note">
+                    <strong>Buena práctica:</strong> Muchos desarrolladores prefieren usar <code>git fetch</code> seguido de un merge manual en lugar de <code>git pull</code> directo, porque te da más control y te permite revisar los cambios antes de integrarlos.
+                </div>
 
-                <pre><code>git pull --rebase</code></pre>
+                <h4>6.5.3. git pull con rebase</h4>
 
-                <h3>ver quién tocó cada línea de un archivo</h3>
+                <p>Para evitar merge commits innecesarios cuando descargas cambios:</p>
+
+                <pre><code>git pull --rebase origin main</code></pre>
+
+                <p>Esto hace rebase de tus commits locales sobre los commits que bajaste del remoto, manteniendo un historial más lineal.</p>
+
+                <h3>6.6. Flujo de trabajo típico con remotos</h3>
+
+                <p>Un día típico de trabajo podría verse así:</p>
+
+                <pre><code># Mañana: Actualizar con los cambios del equipo
+git pull origin main
+
+# Crear una rama para tu trabajo
+git checkout -b fix-bug-123
+
+# Trabajar y hacer commits
+git add .
+git commit -m "Corrige bug en validación"
+
+# Más trabajo...
+git add .
+git commit -m "Agrega tests para la corrección"
+
+# Actualizar con posibles cambios nuevos del equipo
+git checkout main
+git pull origin main
+git checkout fix-bug-123
+git rebase main
+
+# Enviar tu rama al remoto
+git push -u origin fix-bug-123
+
+# Crear un Pull Request en GitHub
+# Después de que lo aprueben y hagan merge...
+
+# Limpiar
+git checkout main
+git pull origin main
+git branch -d fix-bug-123</code></pre>
+            </section>
+
+            <section id="avanzado">
+                <h2>7. Técnicas avanzadas</h2>
+
+                <h3>7.1. Stash: guardar cambios temporalmente</h3>
+
+                <p>Imagina que estás trabajando en algo y de repente necesitas cambiar de rama para arreglar un bug urgente. Tus cambios aún no están listos para commit, pero tampoco quieres perderlos.</p>
+
+                <p>La solución es <strong>stash</strong>:</p>
+
+                <pre><code>git stash</code></pre>
+
+                <p>Esto guarda tus cambios en un "cajón temporal" y deja tu directorio de trabajo limpio. Ahora puedes cambiar de rama, hacer lo que necesites, y luego recuperar tus cambios:</p>
+
+                <pre><code>git stash pop</code></pre>
+
+                <h4>7.1.1. Comandos útiles con stash</h4>
+
+                <pre><code># Guardar con un mensaje descriptivo
+git stash save "Trabajo en progreso en login"
+
+# Ver todos los stashes guardados
+git stash list
+
+# Aplicar un stash específico (sin eliminarlo de la lista)
+git stash apply stash@{0}
+
+# Ver qué contiene un stash sin aplicarlo
+git stash show -p stash@{0}
+
+# Eliminar un stash específico
+git stash drop stash@{0}
+
+# Eliminar todos los stashes
+git stash clear
+
+# Crear una rama a partir de un stash
+git stash branch nombre-rama stash@{0}</code></pre>
+
+                <h3>7.2. Cherry-pick: copiar commits específicos</h3>
+
+                <p>A veces quieres aplicar un commit específico de una rama a otra, sin hacer merge de toda la rama. Para esto sirve <code>cherry-pick</code>:</p>
+
+                <pre><code>git cherry-pick abc123</code></pre>
+
+                <p>Donde <code>abc123</code> es el hash del commit que quieres copiar.</p>
+
+                <div class="example-box">
+                    <h5>Caso de uso:</h5>
+                    <p>Hiciste varios commits en una rama de desarrollo, pero uno de ellos es un bug fix que necesitas en producción inmediatamente. En lugar de hacer merge de toda la rama (que incluye características no terminadas), puedes hacer cherry-pick de solo ese commit del bug fix.</p>
+                </div>
+
+                <h3>7.3. Reset: retroceder en el tiempo</h3>
+
+                <p>El comando <code>git reset</code> mueve la rama actual a un commit anterior. Tiene tres modos:</p>
+
+                <div class="command-structure">
+                    <h4>--soft</h4>
+                    <p>Deshace los commits pero mantiene los cambios en staging:</p>
+                    <pre><code>git reset --soft HEAD~1</code></pre>
+                    <p>Útil cuando quieres modificar el último commit o fusionar varios commits en uno.</p>
+                </div>
+
+                <div class="command-structure">
+                    <h4>--mixed (por defecto)</h4>
+                    <p>Deshace los commits y saca los cambios del staging, pero los mantiene en tu directorio de trabajo:</p>
+                    <pre><code>git reset HEAD~1
+git reset --mixed HEAD~1  # Equivalente</code></pre>
+                    <p>Útil cuando quieres reorganizar qué va en cada commit.</p>
+                </div>
+
+                <div class="command-structure">
+                    <h4>--hard</h4>
+                    <p>Deshace los commits Y descarta todos los cambios:</p>
+                    <pre><code>git reset --hard HEAD~1</code></pre>
+                    <p><strong>¡PELIGROSO!</strong> Perderás todos los cambios. Úsalo solo si estás seguro.</p>
+                </div>
+
+                <p>Algunos ejemplos de uso:</p>
+
+                <pre><code># Deshacer el último commit pero mantener los cambios
+git reset --soft HEAD~1
+
+# Deshacer los últimos 3 commits
+git reset --soft HEAD~3
+
+# Volver a un commit específico
+git reset --hard abc123
+
+# Descartar todos los cambios locales y volver al último commit
+git reset --hard HEAD</code></pre>
+
+                <h3>7.4. Revert: deshacer commits de forma segura</h3>
+
+                <p>A diferencia de <code>reset</code> que reescribe el historial, <code>revert</code> crea un nuevo commit que deshace los cambios de un commit anterior:</p>
+
+                <pre><code>git revert abc123</code></pre>
+
+                <p>Esto es más seguro para commits que ya has compartido con otros, porque no reescribe el historial.</p>
+
+                <div class="note">
+                    <strong>Reset vs Revert:</strong>
+                    <ul>
+                        <li>Usa <code>reset</code> para commits que todavía no has pusheado</li>
+                        <li>Usa <code>revert</code> para deshacer commits que ya están en el repositorio remoto</li>
+                    </ul>
+                </div>
+
+                <h3>7.5. Reflog: tu red de seguridad</h3>
+
+                <p>Git guarda un registro de todo movimiento del puntero HEAD (incluso después de un reset). Este registro se llama <strong>reflog</strong> y es tu salvavidas cuando "pierdes" commits:</p>
+
+                <pre><code>git reflog</code></pre>
+
+                <p>Esto te muestra todos los cambios recientes, incluyendo commits "perdidos":</p>
+
+                <pre><code>abc123 HEAD@{0}: reset: moving to HEAD~1
+def456 HEAD@{1}: commit: Mensaje del commit
+ghi789 HEAD@{2}: checkout: moving from main to feature</code></pre>
+
+                <p>Si accidentalmente hiciste <code>git reset --hard</code> y quieres recuperar esos commits:</p>
+
+                <pre><code>git reset --hard def456</code></pre>
+
+                <div class="note">
+                    <strong>El reflog te salva la vida:</strong> He conocido desarrolladores que pensaban que habían perdido días de trabajo por un reset mal hecho. El reflog casi siempre puede recuperar esos commits. Git es muy difícil de romper permanentemente.
+                </div>
+
+                <h3>7.6. Modificar commits: amend</h3>
+
+                <p>Si acabas de hacer un commit y te das cuenta de que olvidaste algo o el mensaje está mal:</p>
+
+                <pre><code># Modificar el mensaje del último commit
+git commit --amend -m "Nuevo mensaje"
+
+# Agregar cambios olvidados al último commit
+git add archivo-olvidado.txt
+git commit --amend --no-edit  # --no-edit mantiene el mensaje</code></pre>
+
+                <div class="danger">
+                    <strong>Advertencia:</strong> Solo usa <code>--amend</code> en commits que NO hayas pusheado todavía. Modificar commits compartidos causa problemas a otros desarrolladores.
+                </div>
+
+                <h3>7.7. Buscar en el código: git grep</h3>
+
+                <p>Git incluye una herramienta de búsqueda muy rápida:</p>
+
+                <pre><code># Buscar "función" en todos los archivos
+git grep "función"
+
+# Buscar solo en archivos .js
+git grep "función" -- "*.js"
+
+# Mostrar números de línea
+git grep -n "función"
+
+# Buscar en un commit específico
+git grep "función" abc123
+
+# Ignorar mayúsculas/minúsculas
+git grep -i "función"</code></pre>
+
+                <h3>7.8. Blame: encontrar quién cambió qué</h3>
+
+                <p>Para ver quién modificó cada línea de un archivo y cuándo:</p>
 
                 <pre><code>git blame archivo.js</code></pre>
 
-                <p>esto muestra quién modificó cada línea y cuándo. útil cuando algo está roto y querés saber quién lo rompió jaja.</p>
-
-                <div class="note">
-                    <strong>dato:</strong> si trabajas con github o gitlab, configurá SSH keys. así no tenés que meter password cada vez que haces push.
-                </div>
-            </section>
-
-            <section>
-                <h2>recursos que me sirvieron</h2>
-
+                <p>Esto es útil para:</p>
                 <ul>
-                    <li><a href="https://ohshitgit.com/">ohshitgit.com</a> - cuando hiciste algo mal y no sabés cómo arreglarlo</li>
-                    <li><a href="https://learngitbranching.js.org/">learngitbranching.js.org</a> - para aprender jugando</li>
-                    <li><a href="https://git-scm.com/book/es/v2">pro git book</a> - gratis y tiene todo</li>
+                    <li>Entender el contexto de por qué se hizo un cambio</li>
+                    <li>Saber a quién preguntar sobre código específico</li>
+                    <li>Rastrear cuándo se introdujo un bug</li>
                 </ul>
 
-                <p style="margin-top: 30px; color: #57606a; font-style: italic;">
-                    esto lo voy actualizando cuando aprendo algo nuevo o cuando me doy cuenta que venía haciendo algo mal desde siempre
-                </p>
+                <p>Opciones útiles:</p>
+
+                <pre><code># Ver solo las líneas 10-20
+git blame -L 10,20 archivo.js
+
+# Formato más legible
+git blame -w -C archivo.js</code></pre>
+
+                <h3>7.9. Bisect: encontrar bugs con búsqueda binaria</h3>
+
+                <p><code>git bisect</code> usa búsqueda binaria para encontrar qué commit introdujo un bug. Es especialmente útil cuando sabes que algo funcionaba antes pero no sabes exactamente cuándo se rompió.</p>
+
+                <pre><code># Iniciar bisect
+git bisect start
+
+# Marcar el commit actual como malo (tiene el bug)
+git bisect bad
+
+# Marcar un commit antiguo como bueno (no tenía el bug)
+git bisect good abc123
+
+# Git hace checkout a un commit intermedio
+# Pruebas si el bug existe...
+
+# Si el bug existe:
+git bisect bad
+
+# Si no existe:
+git bisect good
+
+# Repite hasta que Git encuentre el commit problemático
+
+# Terminar bisect
+git bisect reset</code></pre>
+
+                <h3>7.10. Tags: marcar versiones importantes</h3>
+
+                <p>Los <strong>tags</strong> son referencias permanentes a commits específicos, usualmente para marcar versiones:</p>
+
+                <pre><code># Crear un tag en el commit actual
+git tag v1.0.0
+
+# Crear un tag con mensaje (anotado)
+git tag -a v1.0.0 -m "Versión 1.0.0 - Primer release"
+
+# Crear un tag en un commit específico
+git tag v1.0.0 abc123
+
+# Ver todos los tags
+git tag
+
+# Ver información de un tag
+git show v1.0.0
+
+# Pushear tags al remoto
+git push origin v1.0.0
+git push origin --tags  # Pushear todos los tags
+
+# Eliminar un tag local
+git tag -d v1.0.0
+
+# Eliminar un tag remoto
+git push origin --delete v1.0.0</code></pre>
+            </section>
+
+            <section id="problemas">
+                <h2>8. Solución de problemas comunes</h2>
+
+                <h3>8.1. "Ayuda, hice cambios en la rama equivocada"</h3>
+
+                <p>Si hiciste cambios pero no has hecho commit todavía:</p>
+
+                <pre><code># Guardar los cambios
+git stash
+
+# Cambiar a la rama correcta
+git checkout rama-correcta
+
+# Aplicar los cambios
+git stash pop</code></pre>
+
+                <p>Si ya hiciste commit en la rama equivocada:</p>
+
+                <pre><code># Cambiar a la rama correcta
+git checkout rama-correcta
+
+# Copiar el commit
+git cherry-pick abc123
+
+# Volver a la rama equivocada
+git checkout rama-equivocada
+
+# Eliminar el commit (si aún no lo pusheaste)
+git reset --hard HEAD~1</code></pre>
+
+                <h3>8.2. "Hice commit de archivos que debían estar en .gitignore"</h3>
+
+                <pre><code># Dejar de rastrear el archivo pero mantenerlo localmente
+git rm --cached archivo-sensible.txt
+
+# Agregarlo al .gitignore
+echo "archivo-sensible.txt" >> .gitignore
+
+# Hacer commit de los cambios
+git add .gitignore
+git commit -m "Actualiza .gitignore"</code></pre>
+
+                <h3>8.3. "Necesito cambiar el mensaje de un commit antiguo"</h3>
+
+                <p>Si el commit aún no fue pusheado:</p>
+
+                <pre><code># Inicia rebase interactivo de los últimos 3 commits
+git rebase -i HEAD~3
+
+# En el editor que se abre, cambia "pick" por "reword" en el commit que quieres modificar
+# Guarda y cierra
+# Git abrirá otro editor donde puedes cambiar el mensaje</code></pre>
+
+                <h3>8.4. "Conflictos de merge que no entiendo"</h3>
+
+                <p>Herramientas que ayudan a resolver conflictos:</p>
+
+                <pre><code># Ver qué archivos tienen conflictos
+git status
+
+# Usar una herramienta visual (si está configurada)
+git mergetool
+
+# Ver solo los archivos con conflictos
+git diff --name-only --diff-filter=U
+
+# Aceptar todos los cambios de una rama u otra
+git checkout --theirs archivo.txt  # Acepta la versión de la otra rama
+git checkout --ours archivo.txt    # Acepta tu versión</code></pre>
+
+                <h3>8.5. "Error: 'fatal: refusing to merge unrelated histories'"</h3>
+
+                <p>Esto pasa al intentar hacer merge de repositorios que no comparten historial común:</p>
+
+                <pre><code>git pull origin main --allow-unrelated-histories</code></pre>
+
+                <h3>8.6. "Mi repositorio está muy lento"</h3>
+
+                <p>Git puede acumular objetos innecesarios con el tiempo:</p>
+
+                <pre><code># Limpiar objetos innecesarios
+git gc --aggressive --prune=now
+
+# Ver el tamaño del repositorio
+git count-objects -vH</code></pre>
+
+                <h3>8.7. "Necesito deshacer un push"</h3>
+
+                <p>Si acabas de pushear algo que no debías:</p>
+
+                <pre><code># Opción 1: Si nadie más ha pulled todavía (peligroso)
+git reset --hard HEAD~1
+git push --force origin main
+
+# Opción 2: Más segura (crea un nuevo commit que deshace el anterior)
+git revert HEAD
+git push origin main</code></pre>
+
+                <div class="danger">
+                    <strong>NUNCA uses --force en ramas compartidas</strong> a menos que seas el único trabajando en ellas y sepas exactamente lo que haces. Coordina con tu equipo antes de forzar un push.
+                </div>
+
+                <h3>8.8. "Olvidé en qué rama estoy trabajando"</h3>
+
+                <pre><code># Ver rama actual
+git branch
+
+# O de forma más detallada
+git status</code></pre>
+
+                <h3>8.9. "Error: 'Your local changes would be overwritten by merge'"</h3>
+
+                <p>Tienes cambios locales sin commit que entrarían en conflicto:</p>
+
+                <pre><code># Opción 1: Guardar los cambios temporalmente
+git stash
+git pull
+git stash pop
+
+# Opción 2: Descartar los cambios locales (¡cuidado!)
+git reset --hard HEAD
+git pull</code></pre>
+
+                <h3>8.10. "Cómo deshacer un 'git add' antes de commit"</h3>
+
+                <pre><code># Sacar un archivo específico del staging
+git restore --staged archivo.txt
+
+# O en versiones antiguas de Git:
+git reset HEAD archivo.txt
+
+# Sacar todos los archivos del staging
+git restore --staged .</code></pre>
+            </section>
+
+            <section id="recursos">
+                <h2>9. Recursos adicionales y mejores prácticas</h2>
+
+                <h3>9.1. Recursos recomendados</h3>
+
+                <ul>
+                    <li><strong><a href="https://git-scm.com/book/es/v2" target="_blank">Pro Git Book</a></strong> - El libro oficial de Git, gratis y completo</li>
+                    <li><strong><a href="https://learngitbranching.js.org/?locale=es_ES" target="_blank">Learn Git Branching</a></strong> - Tutorial interactivo visual</li>
+                    <li><strong><a href="https://ohshitgit.com/es" target="_blank">Oh Shit, Git!?!</a></strong> - Soluciones a problemas comunes</li>
+                    <li><strong><a href="https://gitexplorer.com/" target="_blank">Git Explorer</a></strong> - Encuentra el comando que necesitas</li>
+                    <li><strong><a href="https://www.conventionalcommits.org/es/" target="_blank">Conventional Commits</a></strong> - Estándar para mensajes de commit</li>
+                </ul>
+
+                <h3>9.2. Mejores prácticas</h3>
+
+                <ol>
+                    <li><strong>Commits pequeños y frecuentes:</strong> Es mejor hacer muchos commits pequeños y específicos que uno gigante con muchos cambios.</li>
+                    <li><strong>Mensajes descriptivos:</strong> Tu yo del futuro (y tus compañeros) te lo agradecerán.</li>
+                    <li><strong>Una tarea = una rama:</strong> Mantén cada característica o corrección en su propia rama.</li>
+                    <li><strong>Pull antes de push:</strong> Siempre actualiza tu rama antes de subir cambios.</li>
+                    <li><strong>No commitees secretos:</strong> Nunca subas contraseñas, API keys, o información sensible.</li>
+                    <li><strong>Revisa antes de commit:</strong> Usa <code>git diff</code> y <code>git status</code> antes de cada commit.</li>
+                    <li><strong>Backup remoto frecuente:</strong> Pushea tu trabajo regularmente, no solo al terminar.</li>
+                    <li><strong>Usa .gitignore desde el inicio:</strong> Configúralo antes del primer commit.</li>
+                </ol>
+
+                <h3>9.3. Flujos de trabajo comunes</h3>
+
+                <h4>Git Flow</h4>
+                <p>Un modelo de branching con ramas bien definidas:</p>
+                <ul>
+                    <li><code>main</code> - Código en producción</li>
+                    <li><code>develop</code> - Rama de integración para desarrollo</li>
+                    <li><code>feature/*</code> - Nuevas características</li>
+                    <li><code>hotfix/*</code> - Correcciones urgentes</li>
+                    <li><code>release/*</code> - Preparación de versiones</li>
+                </ul>
+
+                <h4>GitHub Flow</h4>
+                <p>Un flujo más simple:</p>
+                <ol>
+                    <li>Todo en <code>main</code> es desplegable</li>
+                    <li>Crea una rama descriptiva desde <code>main</code></li>
+                    <li>Haz commits y pushea regularmente</li>
+                    <li>Abre un Pull Request cuando esté listo</li>
+                    <li>Después de revisión y aprobación, merge a <code>main</code></li>
+                    <li>Despliega inmediatamente</li>
+                </ol>
+
+                <h3>9.4. Alias útiles para tu .gitconfig</h3>
+
+                <p>Puedes crear atajos para comandos que usas frecuentemente:</p>
+
+                <pre><code>[alias]
+    # Atajos de comandos
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    unstage = restore --staged
+    
+    # Logs bonitos
+    lg = log --oneline --graph --decorate --all
+    last = log -1 HEAD --stat
+    
+    # Ver cambios
+    df = diff
+    dfs = diff --staged
+    
+    # Otros útiles
+    amend = commit --amend --no-edit
+    undo = reset --soft HEAD~1
+    save = stash save
+    pop = stash pop</code></pre>
+
+                <p>Agrega estos a tu <code>~/.gitconfig</code> o usa comandos como:</p>
+
+                <pre><code>git config --global alias.st status
+git config --global alias.lg "log --oneline --graph --all"</code></pre>
             </section>
         </main>
 
         <footer>
-            <p>hecho por alguien que usa git todos los días y sigue pidiendole apoyo a la IA</p>
-            <p style="margin-top: 8px;">última actualización: febrero 2024</p>
+            <p>Esta guía fue creada como recurso educativo para aprender Git de forma práctica y completa.</p>
+            <p style="margin-top: 12px;">Para profundizar más, consulta la <a href="https://git-scm.com/doc" target="_blank">documentación oficial de Git</a></p>
+            <p style="margin-top: 12px; font-size: 14px; opacity: 0.8;">Última actualización: Febrero 2026</p>
         </footer>
     </div>
 </body>
